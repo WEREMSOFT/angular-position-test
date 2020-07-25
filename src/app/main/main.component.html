@@ -1,0 +1,41 @@
+<kendo-splitter orientation="vertical" id="vertical">
+
+  <kendo-splitter-pane size="410px" [collapsible]="true">
+    <kendo-grid [data]="gridData" [sortable]="{
+      allowUnsort: allowUnsort,
+      mode: multiple ? 'multiple' : 'single'
+      }" [sort]="sort" (sortChange)="onSortChange($event)" [height]="410">
+      <kendo-grid-column field="name" title="Grid Name" width="50%">
+      </kendo-grid-column>
+      <kendo-grid-column field="host" title="Name" width="50%">
+      </kendo-grid-column>
+    </kendo-grid>
+  </kendo-splitter-pane>
+  <!-- Inferior Panel -->
+  <kendo-splitter-pane [resizable]="true" [collapsible]="false">
+    <div class="pane-content">
+      <!-- Actions -->
+      <div class="row">
+        <div class="col-xs-12 col-md-6 example-col">
+            <button kendoButton [primary]="true">Add</button>
+            <button kendoButton [look]="'outline'" [primary]="true">Delete</button>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Bulk Management list -->
+        <div class="col-xs-12 col-md-6 example-col">
+          <kendo-floatinglabel text="Bulk Management" style="width: 100%;">
+          <textarea [(ngModel)]="hostsBulk" rows="10" style="width: 100%;" kendoTextArea></textarea>
+        </kendo-floatinglabel>
+        </div>
+        <!-- Host selection -->
+        <div class="col-xs-12 col-md-6 example-col">
+          <kendo-floatinglabel text="Select value" style="width: 100%;">
+            <kendo-dropdownlist [(ngModel)]="selectedHost" style="width: 100%;" [data]="availableHosts">
+            </kendo-dropdownlist>
+          </kendo-floatinglabel>
+        </div>
+      </div>
+    </div>
+  </kendo-splitter-pane>
+</kendo-splitter>
