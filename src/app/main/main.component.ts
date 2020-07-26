@@ -22,14 +22,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   selectedGrid = this.availableGrids[0];
 
-  sort: SortDescriptor[] = [{
-    field: 'grid',
-    dir: 'asc'
-  },
-  {
-    field: 'host',
-    dir: 'asc'
-  }];
+  sort: SortDescriptor[] = [];
   private subscriptions$: Subscription[] = [];
 
   constructor(private hostService: HostsService) {
