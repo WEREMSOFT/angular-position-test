@@ -4,7 +4,7 @@ This project was created as a test for an angular position.
 
 ## Please read the following notes:
 
-* some parts of the user interface were changed following the material UI guidelines. `https://material.io/design/guidelines-overview`. The differences inted to be intentional to improve usability.
+* Some parts of the user interface were changed following the material UI guidelines `https://material.io/design/guidelines-overview`. The differences inted to be intentional to improve usability. **Please ask if you have any doubths related with differences in the user interface distribution**.
 
 * Type inference is heavily used in order to minimize cognitive load when reading the code. Variables and return values have no typedef when this can be deducted from the asignation or return clause. As stated in the book **Effective Typescrpt(Vanderkam 2020)**
 
