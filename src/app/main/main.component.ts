@@ -37,7 +37,6 @@ export class MainComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions$.push(this.hostService.getHosts().subscribe(hosts => {
-      console.log(hosts);
       this.gridDataResult = hosts;
     }));
 
@@ -61,7 +60,6 @@ export class MainComponent implements OnInit, OnDestroy {
   onCancelClick() {
     const hosts = this.sanitizeHostsList();
     this.hostService.deleteHosts(hosts.map(hName => Host.fromObject({ host: hName, grid: this.selectedGrid })));
-    console.log('cancel click');
   }
 
   // GRID EVENTS
