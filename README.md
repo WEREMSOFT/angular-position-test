@@ -2,7 +2,7 @@
 
 This project was created as a test for an angular position.
 
-Please read the following notes:
+## Please read the following notes:
 
 * some parts of the user interface were changed following the material UI guidelines. `https://material.io/design/guidelines-overview`. The differences inted to be intentional to improve usability.
 
