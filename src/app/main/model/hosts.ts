@@ -1,23 +1,29 @@
-export type Host = { name: string, host: string };
+export class Host {
+    public static fromObject(object: { grid: string, host: string }): Host {
+        return new Host(object.grid, object.host);
+    }
+    private constructor(public grid: string, public host: string) { }
+};
+
 export const HOSTS: Host[] = [
-    {
-        name: 'gs-tst-test202-dev-dir-1',
+    Host.fromObject({
+        grid: 'gs-tst-test202-dev-dir-1',
         host: 'host5'
-    },
-    {
-        name: 'gs-tst-test202-dev-dir-1',
+    }),
+    Host.fromObject({
+        grid: 'gs-tst-test202-dev-dir-1',
         host: 'host4'
-    },
-    {
-        name: 'gs-tst-test202-dev-dir-2',
+    }),
+    Host.fromObject({
+        grid: 'gs-tst-test202-dev-dir-2',
         host: 'host3'
-    },
-    {
-        name: 'gs-tst-test202-dev-dir-2',
+    }),
+    Host.fromObject({
+        grid: 'gs-tst-test202-dev-dir-2',
         host: 'host2'
-    },
-    {
-        name: 'gs-tst-test202-dev-dir-3',
+    }),
+    Host.fromObject({
+        grid: 'gs-tst-test202-dev-dir-3',
         host: 'host1'
-    },
+    }),
 ];

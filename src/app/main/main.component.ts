@@ -17,18 +17,13 @@ export class MainComponent implements OnInit, OnDestroy {
   multiple = true;
   allowUnsort = true;
   hostsBulk = '';
-  selectedHost = '';
 
-  availableHosts: string[] = [
-    'gs-tst-test202-dev-dir-1',
-    'gs-tst-test202-dev-dir-2',
-    'gs-tst-test202-dev-dir-3',
-    'gs-tst-test202-dev-dir-4',
-    'gs-tst-test202-dev-dir-5'
-  ];
+  availableGrids: string[] = [];
+
+  selectedGrid = this.availableGrids[0];
 
   sort: SortDescriptor[] = [{
-    field: 'name',
+    field: 'grid',
     dir: 'asc'
   },
   {
@@ -45,30 +40,48 @@ export class MainComponent implements OnInit, OnDestroy {
       console.log(hosts);
       this.gridDataResult = hosts;
     }));
+
+    this.subscriptions$.push(this.hostService.getAvailableGrids().subscribe(grids => {
+      this.availableGrids = grids;
+      this.selectedGrid = this.availableGrids[0];
+    }));
   }
 
   ngOnDestroy() {
     this.subscriptions$.forEach(s => s.unsubscribe());
   }
 
-  onSortChange(sort: SortDescriptor[]): void {
-    this.sort = sort;
-    this.hostService.setSort(this.sort);
-  }
-
   // ACTIONS
   onSaveClick() {
-    this.hostService.addHosts([{ name: 'new', host: 'host' }]);
+    const hosts = this.sanitizeHostsList();
+
+    this.hostService.addHosts(hosts.map(hName => Host.fromObject({ host: hName, grid: this.selectedGrid })));
   }
 
   onCancelClick() {
+    const hosts = this.sanitizeHostsList();
+    this.hostService.deleteHosts(hosts.map(hName => Host.fromObject({ host: hName, grid: this.selectedGrid })));
     console.log('cancel click');
   }
 
   // GRID EVENTS
-  public onGridPageChange(event: PageChangeEvent): void {
-    console.log(event);
+  onGridPageChange(event: PageChangeEvent) {
     this.skip = event.skip;
     this.hostService.setPage(this.skip);
-}
+  }
+
+  onSortChange(sort: SortDescriptor[]) {
+    this.sort = sort;
+    this.hostService.setSort(this.sort);
+  }
+
+  private sanitizeHostsList(): string[] {
+    let returnValue = this.hostsBulk.split('\n');
+    returnValue = returnValue.map(item => item.trim());
+
+    const hostsUniqueNames: Map<string, boolean> = new Map<string, boolean>();
+    returnValue.forEach(name => hostsUniqueNames[name] = true);
+
+    return Object.keys(hostsUniqueNames).filter(key => key.length !== 0);
+  }
 }
