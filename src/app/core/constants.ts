@@ -4,7 +4,7 @@ export class Constants {
         2,
         3,
         4
-    ]
+    ];
 }
 
 export enum OTHER_VALUES {

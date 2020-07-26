@@ -1,5 +1,5 @@
 export type Host = { name: string, host: string };
-export const hosts: Host[] = [
+export const HOSTS: Host[] = [
     {
         name: 'gs-tst-test202-dev-dir-1',
         host: 'host5'

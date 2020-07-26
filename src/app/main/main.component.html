@@ -1,32 +1,49 @@
 <kendo-splitter orientation="vertical" id="vertical">
 
   <kendo-splitter-pane size="410px" [collapsible]="true">
-    <kendo-grid [data]="gridData" [sortable]="{
+    <!-- GRID BEGIN -->
+    <kendo-grid 
+    [data]="gridDataResult" 
+
+    [pageSize]="10"
+    [skip]="skip"
+    [pageable]="true"
+   
+    [sort]="sort" 
+    (sortChange)="onSortChange($event)" 
+    [sortable]="{
       allowUnsort: allowUnsort,
       mode: multiple ? 'multiple' : 'single'
-      }" [sort]="sort" (sortChange)="onSortChange($event)" [height]="410">
+      }" 
+      [height]="410"
+      (pageChange)="onGridPageChange($event)">
       <kendo-grid-column field="name" title="Grid Name" width="50%">
       </kendo-grid-column>
       <kendo-grid-column field="host" title="Name" width="50%">
       </kendo-grid-column>
+      
     </kendo-grid>
+    <!-- GRID END -->
   </kendo-splitter-pane>
   <!-- Inferior Panel -->
   <kendo-splitter-pane [resizable]="true" [collapsible]="false">
     <div class="pane-content">
-      <!-- Actions -->
+      
+      <!-- ### Actions BEGIN -->
       <div class="row">
         <div class="col-xs-12 col-md-6 example-col">
-            <button kendoButton [primary]="true">Add</button>
-            <button kendoButton [look]="'outline'" [primary]="true">Delete</button>
+          <button kendoButton (click)="onSaveClick()" [primary]="true">Add</button>
+          <button kendoButton (click)="onCancelClick()" [look]="'outline'" [primary]="true">Delete</button>
         </div>
       </div>
+      <!-- ### Actions END -->
+
       <div class="row">
         <!-- Bulk Management list -->
         <div class="col-xs-12 col-md-6 example-col">
           <kendo-floatinglabel text="Bulk Management" style="width: 100%;">
-          <textarea [(ngModel)]="hostsBulk" rows="10" style="width: 100%;" kendoTextArea></textarea>
-        </kendo-floatinglabel>
+            <textarea [(ngModel)]="hostsBulk" rows="10" style="width: 100%;" kendoTextArea></textarea>
+          </kendo-floatinglabel>
         </div>
         <!-- Host selection -->
         <div class="col-xs-12 col-md-6 example-col">

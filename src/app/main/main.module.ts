@@ -10,6 +10,7 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { FormsModule } from '@angular/forms';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { HostsService } from './model/service/hosts.service';
 
 @NgModule({
   declarations: [MainComponent],
@@ -24,6 +25,9 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
     LabelModule,
     FormsModule,
     DropDownsModule
+  ],
+  providers: [
+    HostsService
   ]
 })
 export class MainModule { }
