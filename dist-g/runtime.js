@@ -203,7 +203,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "https://htmlpreview.github.io/?https://github.com/WEREMSOFT/angular-position-test/blob/master/dist-g/angular-interview/";
+/******/ 	__webpack_require__.p = "https://htmlpreview.github.io/?https://github.com/WEREMSOFT/angular-position-test/blob/master/dist-g/";
 /******/
 /******/ 	// on error function for async loading
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
